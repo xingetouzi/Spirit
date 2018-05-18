@@ -2,14 +2,31 @@
 
 from __future__ import unicode_literals
 from datetime import timedelta
+import os
 
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
+from django.core.files.storage import FileSystemStorage
 
 from ..core.conf import settings
 from ..core.utils.models import AutoSlugField
+
+
+class OverwriteStorage(FileSystemStorage):
+
+    def get_available_name(self, name, max_length=None):
+        if self.exists(name):
+            os.remove(os.path.join(settings.MEDIA_ROOT, name))
+
+        return name
+
+
+def upload_article_cover(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = '{}.{}'.format(str(instance.user.id), ext)
+    return "image/{}".format(filename)
 
 
 class UserProfile(models.Model):
@@ -32,7 +49,7 @@ class UserProfile(models.Model):
 
     last_post_hash = models.CharField(_("last post hash"), max_length=32, blank=True)
     last_post_on = models.DateTimeField(_("last post on"), null=True, blank=True)
-    image = models.ImageField(upload_to="image", default=u"image/default.png", max_length=100)
+    image = models.ImageField(upload_to=upload_article_cover, default=u"image/default.png", max_length=100, storage=OverwriteStorage())
 
     class Meta:
         verbose_name = _("forum profile")
