@@ -26,7 +26,8 @@
 
     <form enctype="multipart/form-data" autocomplete="off" action="." method="post">
         {% csrf_token %}
-        <input type="file" name="image" id="upload-photo" style="margin-bottom: 20px" />
+        <input type="file" name="image" id="upload-photo" style="margin-bottom: 20px;display: inline-block;width: 20%" />
+        <p style="display: inline-block;font-size: 14px">（限制最大上传图片3MB）</p>
         {% include "spirit/_form.html" with form=uform %}
         {% include "spirit/_form.html" %}
 
