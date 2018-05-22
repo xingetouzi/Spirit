@@ -14,10 +14,10 @@
                             <a class="js-like" href="{% url "spirit:comment:like:delete" c.like.pk %}" data-count="{{ c.likes_count }}" title="This answer is not useful"><i class="fa fa-heart-o" style="font-size: 10px;"></i></a>
                         {% else %}
                             {% ifnotequal c.user user  %}
-                                <a class="js-like" class="like" href="{% url "spirit:comment:like:create" c.pk %}" data-count="{{ c.likes_count }}"  title="This answer is useful"><i class="fa fa-heart likeCount"></i></a>  
+                                <a class="js-like" class="like" href="{% url "spirit:comment:like:create" c.pk %}" data-count="{{ c.likes_count }}"  title="This answer is useful"><i class="fa fa-heart likeCount"></i></a>
                             {% else %}
                                 <i class="fa fa-heart likeCount"></i>
-                            {% endifnotequal %}                      
+                            {% endifnotequal %}
                         {% endif %}
                     {% endif %}
                     </div>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="comment-info">
                     <div class="comment-img">
                         <img class="comment-avatar" src="{{ MEDIA_URL }}{{ c.user.st.image }}"/>
@@ -45,7 +45,7 @@
                             <li><a href="{% url "spirit:comment:history:detail" comment_id=c.pk %}"><i class="fa fa-pencil"></i> {{ c.modified_count }}</a></li>
                         {% endif %}
 
-                        <li title="{{ c.date }}">{{ c.date }}</li>
+                        <li title="{{ c.date }}">{{ c.date|shorttime }}</li>
                     </ul>
 
                 </div>
