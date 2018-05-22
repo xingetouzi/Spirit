@@ -20,7 +20,7 @@
 
                             <ul class="comment-date">
                                 <li><a href="{{ c.get_absolute_url }}"><i class="fa fa-comments"></i> {{ c.topic.title }}</a></li><!--
-			                 --><li title="{{ c.date }}">{{ c.date }}</li>
+			                 --><li title="{{ c.date }}">{{ c.date|shorttime }}</li>
                             </ul>
 
                         </div>

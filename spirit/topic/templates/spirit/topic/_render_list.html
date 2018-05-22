@@ -44,9 +44,9 @@
                     <img class="comment-avatar" src="{{ MEDIA_URL }}{{ t.user.st.image }}"/>
                     <div class="user-info">
                         <a class="username{% if t.user.st.is_administrator %} is-admin{% elif t.user.st.is_moderator %} is-mod{% endif %}" href="{{ t.user.st.get_absolute_url }}" style="display: block;text-align: left;">{{ t.user.username }}</a >
-                        <div title="{{ t.last_active }}">{{ t.last_active }}</div>
+                        <div title="{{ t.last_active }}">{{ t.last_active|shorttime }}</div>
                     </div>
-                    
+
                 </div>
 			</div>
         {% empty %}

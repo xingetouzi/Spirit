@@ -2,7 +2,7 @@
 
 
     <div class="profile-img">
-		<img class="comment-avatar" src="{{ MEDIA_URL }}{{ request.user.st.image }}" style="width: 80px;width: 80px;margin-top: 10%"/>
+		<img class="comment-avatar" src="{{ MEDIA_URL }}{{ p_user.st.image }}" style="width: 80px;width: 80px;margin-top: 10%"/>
 		<div class="profile-username">{{ p_user.username }}</div>
 	</div>
 
@@ -11,12 +11,12 @@
 			<li>
 				<div class="profile-title">{% trans "Joined at" %}</div>
 
-				<div class="profile-date">{{ p_user.date_joined }}</div>
+				<div class="profile-date">{{ p_user.date_joined|shorttime }}</div>
 			</li><!--
 		 --><li>
 
 				<div class="profile-title">{% trans "Seen" %}</div>
-				<div class="profile-date">{{ p_user.st.last_seen }}</div>
+				<div class="profile-date">{{ p_user.st.last_seen|shorttime }}</div>
 			</li>
 
             {% if user.st.is_administrator %}

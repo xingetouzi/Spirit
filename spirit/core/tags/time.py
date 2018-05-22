@@ -42,3 +42,13 @@ def shortnaturaltime(value):
 
     count //= 60
     return _('%(count)sh') % {'count': count}
+
+
+@register.filter(expects_localtime=True)
+def shorttime(value):
+    tz = utc if is_aware(value) else None
+    now = datetime.now(tz)
+
+    if defaultfilters.date(now, 'y') == defaultfilters.date(value, 'y'):
+        return "%d月 %d日" % (value.month, value.day)
+    return "%d年 %d月 %d日" % (value.year, value.month, value.day)
