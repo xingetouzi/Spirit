@@ -6882,7 +6882,7 @@ input[type="submit"].button,
   float: right;
   line-height: 48px; }
   .header-tabs li {
-    margin-left: 24px;
+    margin-left: 16px;
 }
 .header-tabs li a{
   color: #fff;
@@ -7633,8 +7633,32 @@ ul.reply-markdown {
   word-wrap:break-word;  
   word-break:break-all;
 }
-
+.dialog-box{
+  display: none;
+  position:relative;
+  width: 25px;
+  height: 25px;
+  background-color: #4db3c7;
+  border-radius: 5px;
+  border: 1px solid #4db3c7;
+  text-align: center;
+  line-height: 25px;
+  color: #fff;
+}
+.dialog-radius{
+  position:absolute;
+  top:7px;
+  right:-11px; 
+  width:0;
+  height:0;
+  font-size:0;
+  border:solid 5px;
+  border-color:#fff #fff #fff #4db3c7;
+}
 @media screen and (min-device-width: 375px) and (max-device-width: 736px){
+  .header-logo{
+    font-size: 20px
+  }
   .menu-link{
     font-size: 16px;
   }
@@ -7677,15 +7701,15 @@ ul.reply-markdown {
     left: 5px;
   }
   .row-title{
-    width: 50%;
-    margin-left: 2%; 
+    width: 60%;
+    margin-left: 4%; 
   }
   .row-title > div > .row-link{
     font-size: 16px;
-    width:45%!important;
   }
   .row-title > p{
     font-size: 12px;
+    margin-bottom: 0;
   }
   .row-categary {
     display: none;
@@ -7693,7 +7717,12 @@ ul.reply-markdown {
   .row-tags{
     display: inline-block;
     font-size: 12px!important;
-    line-height: 34px;
+    background-color: #bbb;
+    height: 17px;
+    line-height: 17px;
+    color: #fff;
+    border-radius: 3px;
+    padding: 2px 2px;
   }
   .row-tags i{
     font-size: 12px;
@@ -7703,8 +7732,8 @@ ul.reply-markdown {
     width: 26%;
   }
   .row-info img{
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
   }
   .user-info{
     width: 80%;
@@ -7749,11 +7778,20 @@ ul.reply-markdown {
   .comment-actions > li > a{
     font-size: 14px;
   }
+  .row-answer{
+    display: none;
+  }
+  .dialog-box{
+    display: inline-block;
+  }
 }
 
 
 
 @media screen and (max-device-width: 374px) {
+  .header-logo{
+    font-size: 18px
+  }
   .menu-link{
     font-size: 14px;
   }
@@ -7796,15 +7834,15 @@ ul.reply-markdown {
     left: 12px;
   }
   .row-title{
-    width: 50%;
-    margin-left: 2%; 
+    width: 60%;
+    margin-left: 4%; 
   }
   .row-title > div > .row-link{
     font-size: 16px;
-    width: 40%!important;
   }
   .row-title > p{
     font-size: 12px;
+    margin-bottom: 0!important;
   }
   .row-categary {
     display: none;
@@ -7812,21 +7850,26 @@ ul.reply-markdown {
   .row-tags{
     display: inline-block;
     font-size: 12px!important;
-    line-height: 32px;
+    background-color: #bbb;
+    height: 17px;
+    line-height: 17px;
+    color: #fff;
+    border-radius: 3px;
+    padding: 2px 4px;
   }
   .row-tags i{
     font-size: 12px;
   }
   .row-info{
-    margin-left: 2%;
+    margin-left: 3%;
     width: 26%;
   }
   .user-info{
     width: 75%;
   }
   .row-info img{
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
   }
   .user-info a{
     font-size: 12px;
@@ -7869,5 +7912,11 @@ ul.reply-markdown {
   }
   .comment-actions > li > a{
     font-size: 14px;
+  }
+  .row-answer{
+    display: none;
+  }
+  .dialog-box{
+    display: inline-block;
   }
 } 

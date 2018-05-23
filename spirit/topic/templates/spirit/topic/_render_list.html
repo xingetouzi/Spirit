@@ -12,6 +12,10 @@
                     <span>{{ t.comment_count|add:-1 }}</span>
                     <p>Answers</p>
                 </div>
+                <div class="dialog-box">
+                    {{ t.comment_count|add:-1 }}
+                    <div class="dialog-radius"></div>
+                </div>
                 <div class="row-title">
                     {% if t.is_pinned or t.is_globally_pinned %}
                         <i class="fa fa-thumb-tack"></i>
@@ -21,12 +25,12 @@
                     {% endif %}
                     <div style="width: 100%;display: flex;display: -webkit-flex;flex-direction: row;">
                         <a class="row-link{% if t.is_visited %} is-visited{% endif %} row-title-link" href="{{ t.get_bookmark_url }}" style="display:block;width:100%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{ t.title }}</a>
-                        <a class="row-tags" {% if t.category.parent.color %}style="color:{{ t.category.parent.color }};"{% endif %} href="{{ t.category.parent.get_absolute_url }}">
-                            <i class="fa fa-tags"></i>
-                            {{ t.category.title }}
-                        </a>
                     </div>
                     <p>{{ t.comment.comment }}</p>
+                    <a class="row-tags" {% if t.category.parent.color %}style="color:{{ t.category.parent.color }};"{% endif %} href="{{ t.category.parent.get_absolute_url }}">
+                        <i class="fa fa-tags"></i>
+                        {{ t.category.title }}
+                    </a>
                 </div>
                 <div class="row-categary">
                     {% if show_subcategory %}
