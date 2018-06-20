@@ -6,8 +6,8 @@
 		<div class="comment{% if c.action %} is-highlighted{% endif %}" id="c{{forloop.counter0|add:comments.start_index }}" data-number="{{ forloop.counter0|add:comments.start_index }}" data-pk="{{ c.pk }}">
 
             {% if not c.is_removed %}
-                <div class="comment-media" style="display: flex;display:-webkit-flex;flex-direction: row;">
-                    <div class="comment-like-count" style="display: flex;display:-webkit-flex;flex-direction: row;margin-right: 20px;margin-top: 16px;">
+                <div class="comment-media" style="display: flex;display:-webkit-flex;flex-direction: row;align-items: center;">
+                    <div class="comment-like-count" style="display: flex;display:-webkit-flex;flex-direction: row;margin-right: 10px;">
                     {{c.likes_count}}
                     {% if user.is_authenticated %}
                         {% if c.like %}
@@ -33,13 +33,14 @@
                 </div>
 
                 <div class="comment-info">
-                    <div class="comment-img">
-                        <img class="comment-avatar" src="{{ MEDIA_URL }}{{ c.user.st.image }}"/>
+                    <div class="commentUserInfo">
+                        <div class="comment-img">
+                            <img class="comment-avatar" src="{{ MEDIA_URL }}{{ c.user.st.image }}"/>
+                        </div>
+                        <div class="comment-username">
+                            <a class="username{% if c.user.st.is_administrator %} is-admin{% elif c.user.st.is_moderator %} is-mod{% endif %}" href="{{ c.user.st.get_absolute_url }}">{{ c.user.username }}</a><span class="comment-realname">{{ c.user.get_full_name }}</span>
+                        </div>
                     </div>
-                    <div class="comment-username">
-                        <a class="username{% if c.user.st.is_administrator %} is-admin{% elif c.user.st.is_moderator %} is-mod{% endif %}" href="{{ c.user.st.get_absolute_url }}">{{ c.user.username }}</a><span class="comment-realname">{{ c.user.get_full_name }}</span>
-                    </div>
-
                     <ul class="comment-date">
                         {% if c.modified_count > 0 %}
                             <li><a href="{% url "spirit:comment:history:detail" comment_id=c.pk %}"><i class="fa fa-pencil"></i> {{ c.modified_count }}</a></li>
@@ -47,7 +48,31 @@
 
                         <li title="{{ c.date }}">{{ c.date|shorttime }}</li>
                     </ul>
-
+                    <div class="comment-actionDrop">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <div class="comment-actions">
+                            <div class="dialog-comment"></div>
+                            <ul>
+                                {% if user.is_authenticated %}
+                                    {% if user.st.is_moderator %}
+                                        <li><a href="{% url "spirit:comment:delete" c.pk %}"><i class="fa fa-times"></i> {% trans "delete" %}</a></li>
+                                    {% endif %}
+                                    <li><a href="{% url "spirit:comment:flag:create" c.pk %}"><i class="fa fa-flag"></i> {% trans "report" %}</a></li>
+                                {% endif %}
+        
+                                <li><a class="js-share" href="#" data-dialog=".js-share-{{ c.pk }}"><i class="fa fa-share-alt"></i> {% trans "share" %}</a></li>
+                                {% if user.is_authenticated %}
+                                    {% if user.st.is_moderator or c.user.pk == user.pk %}
+                                        <li><a href="{% url "spirit:comment:update" pk=c.pk %}" >{% trans "edit" %}</a></li>
+                                    {% endif %}
+                                    {% ifnotequal c.user.pk user.pk %}
+                                        <li><a href="{% url "spirit:comment:publish" topic_id=topic.pk pk=c.pk %}" ><i class="fa fa-share"></i>{% trans "quote" %}</a></li>
+                                        <li><a href="#reply" class="js-reply-button" data="@{{ c.user.username }}" >{% trans "reply" %}</a></li>
+                                    {% endifnotequal %}
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 {% if not c.action %}
                     <ul class="comment-actions">
@@ -102,7 +127,6 @@
                     </div>
 
                     <div class="comment-body">
-
                         <div class="comment-text">
                             {% if user.st.is_moderator %}
                                 {{ c.comment_html|safe }}
@@ -118,7 +142,6 @@
                         <li><a href="{% url "spirit:comment:undelete" c.pk %}"><i class="fa fa-times"></i> {% trans "undelete" %}</a></li>
                     </ul>
                 {% endif %}
-
             {% endif %}
 
 		</div>
@@ -139,7 +162,13 @@
             } );
         {% endif %}
         $('.js-share').social_share();
-
+        $('.comment-actionDrop').click(function(){
+            if($(this).find($('.comment-actions')).css('display') == 'none'){
+                $(this).find($('.comment-actions')).show();
+            }else{
+                $(this).find($('.comment-actions')).hide();
+            }
+        })
         hljs.initHighlightingOnLoad();
 
 	});
