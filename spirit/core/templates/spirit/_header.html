@@ -36,7 +36,6 @@
                 <div class="header-tab-content js-tab-content js-search-content">
                     {% render_search_form %}
                 </div>
-
             </div>
         {% else %}
             <a class="header-link" href="{% url "spirit:user:auth:login" %}?next={% firstof request.get_full_path|urlencode '/' %}">{% trans "Log in" %}</a>
