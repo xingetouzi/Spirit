@@ -6910,14 +6910,24 @@ input[type="submit"].button,
 }
 
 .header-tabs {
+  line-height: 48px; 
+}
+.headRight{
   float: right;
-  line-height: 48px; }
-  .header-tabs li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.headRight > a{
+  color: #fff;
+  font-size: 18px;
+  margin-right: 10px;
+}
+.header-tabs li {
     margin-left: 16px;
 }
 .header-tabs li a{
   color: #fff;
-  margin-right: 10px; 
 }
 .header-tab-link.is-selected {
   color: #1c1c1c; }
@@ -6933,6 +6943,7 @@ input[type="submit"].button,
   border-bottom: #cecece 1px solid;
   position: absolute;
   right: 0;
+  top: 48px;
   background-color: #f6f6f6;
   box-shadow:2px 2px 10px #909090;
   z-index: 1000;
@@ -6971,9 +6982,11 @@ input[type="submit"].button,
   margin-top: 50px; }
 
 .headline {
-  font-weight: 400; 
   color: #16191c;
   position: relative;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
 }
 .question-content{
   margin:10px 10px;
@@ -6986,6 +6999,9 @@ input[type="submit"].button,
   margin-top: 0;
   margin-bottom: 0;
   color: #454952;
+}
+.question-content > p > img{
+  margin: 10px 0px;
 }
 .question-content > a{
   font-size: 14px;
@@ -7674,11 +7690,19 @@ ul.reply-markdown {
   word-wrap:break-word;  
   word-break:break-all;
 }
+.js-reply{
+  margin: 0 5px;
+}
+.field > label{
+  margin-bottom: 5px;
+} 
 .question-content p{
   width: 100%;
   word-wrap:break-word;  
   word-break:break-all;
   display: inline-block;
+  line-height: 24px!important;
+  text-indent: 20px!important;
 }
 .comment-date > li > a{
   word-wrap:break-word;  
@@ -7717,9 +7741,8 @@ ul.reply-markdown {
 .comment-actionDrop{
   display: none;
 }
-@media screen and (min-device-width: 375px) and (max-device-width: 736px){
+@media screen and (min-device-width: 375px) and (max-device-width: 768px){
   h1{
-    font-size: 24px;
     line-height: 24px;
   }
   .header-logo{
@@ -7824,7 +7847,6 @@ ul.reply-markdown {
   }
   .question-content p{
     font-size: 14px;
-    line-height: 14px;
     margin-bottom: 0px;
     margin-top: 0px;
   }
