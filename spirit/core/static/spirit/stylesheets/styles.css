@@ -7702,7 +7702,6 @@ ul.reply-markdown {
   word-break:break-all;
   display: inline-block;
   line-height: 24px!important;
-  text-indent: 20px!important;
 }
 .comment-date > li > a{
   word-wrap:break-word;  

@@ -13,15 +13,15 @@
                     {% if category.parent %}
                         <li><a class="menu-link" href="{{ category.parent.get_absolute_url }}" >{% trans "All Subcategories" %}</a></li>
                     {% else %}
-                        <li><a class="menu-link" href="{% url "spirit:topic:index-active" %}" {% if not id %} style="background-color: #fff;border-top: 2px solid orangered" {% endif %} >{% trans "All Categories" %}</a></li>
+                        <li><a class="menu-link" href="{% url "spirit:topic:index-active" %}" {% if not id %} style="background-color: #fff;border-bottom: 2px solid #4db3c7" {% endif %} >{% trans "All Categories" %}</a></li>
                     {% endif %}
                     
                     {% for c in categories %}
-                            {% ifequal id c.id|stringformat:"i" %}
-                                <li><a class="menu-link" href="{{ c.get_absolute_url }}" style="background-color: #fff;border-top: 2px solid orangered">{{ c.title }} </a></li>
-                            {% else %}
-                                <li><a class="menu-link" href="{{ c.get_absolute_url }}" >{{ c.title }}</a></li>
-                            {% endifequal %}
+                        {% ifequal id c.id|stringformat:"i" %}
+                            <li><a class="menu-link" href="{{ c.get_absolute_url }}" style="background-color: #fff;border-bottom: 2px solid #4db3c7">{{ c.title }} </a></li>
+                        {% else %}
+                            <li><a class="menu-link" href="{{ c.get_absolute_url }}" >{{ c.title }}</a></li>
+                        {% endifequal %}
                     {% endfor %}                  
 				</ul>
 			</div>
