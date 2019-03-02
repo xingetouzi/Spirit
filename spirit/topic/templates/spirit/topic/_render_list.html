@@ -9,11 +9,11 @@
                     <div class="ribbon-tab-green"><div class="rowIsTop">置顶</div></div>
                 {% endif %}
                 <div class="row-answer">
-                    <span>{{ t.comment_count|add:-1 }}</span>
+                    <span>{% if t.comment_count %}{{ t.comment_count|add:-1 }}{% else %}{{ 0 }}{% endif %}</span>
                     <p>Answers</p>
                 </div>
                 <div class="dialog-box">
-                    {{ t.comment_count|add:-1 }}
+                    {% if t.comment_count %}{{ t.comment_count|add:-1 }}{% else %}{{ 0 }}{% endif %}
                     <div class="dialog-radius"></div>
                 </div>
                 <div class="row-title">
